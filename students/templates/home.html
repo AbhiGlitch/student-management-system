@@ -1,0 +1,58 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Student Management System</h1>
+      <a href="{% url 'logout' %}" class="logout-btn" style="float: right;">Logout</a>
+      <a href="{% url 'add_student' %}" class="add-btn"> Add Student</a>
+      <br /><br />
+      <form method="get">
+        <input
+          type="text"
+          name="q"
+          placeholder="Search by name"
+          value="{{ query|default:'' }}"
+        />
+        <button type="submit" class="search-btn">Search</button>
+      </form>
+      <table border="1" cellpadding="10">
+        <tr>
+          <th>S.no</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>City</th>
+          <th>Actions</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+          <th>{{forloop.counter}}</th>
+          <td>{{student.name}}</td>
+          <td>{{student.age}}</td>
+          <td>{{student.city}}</td>
+          <td>
+            <a href="{% url 'edit_student' student.id %}" class="edit">Edit</a>
+            |
+            <a
+              href="{% url 'delete_student' student.id %}"
+              class="delete"
+              onclick="
+                return confirm('Are You Sure You Want To Delete This Student?');
+              "
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">No students found.</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>

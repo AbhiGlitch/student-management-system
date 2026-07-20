@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Studnts</title>
+  </head>
+  <body>
+    <h1>Add Student</h1>
+
+    <form method="POST" action="{% url 'add_student' %}">
+      {% csrf_token %} Name:
+      <input type="text" name="name" /><br /><br />
+      Age:
+      <input type="number" name="age" /><br /><br />
+      City:
+      <input type="text" name="city" /><br /><br />
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>
