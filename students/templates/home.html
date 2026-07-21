@@ -8,15 +8,17 @@
   <body>
     <div class="container">
       <h1>Student Management System</h1>
-      <a href="{% url 'logout' %}" class="logout-btn" style="float: right;">Logout</a>
+      <a href="{% url 'logout' %}" class="logout-btn" style="float: right"
+        >Logout</a
+      >
       <a href="{% url 'add_student' %}" class="add-btn"> Add Student</a>
       <br /><br />
       <form method="get">
         <input
           type="text"
-          name="q"
+          name="search"
           placeholder="Search by name"
-          value="{{ query|default:'' }}"
+          value="{{ search }}"
         />
         <button type="submit" class="search-btn">Search</button>
       </form>
@@ -30,7 +32,7 @@
         </tr>
         {% for student in students %}
         <tr>
-          <th>{{forloop.counter}}</th>
+          <td>{{forloop.counter}}</td>
           <td>{{student.name}}</td>
           <td>{{student.age}}</td>
           <td>{{student.city}}</td>

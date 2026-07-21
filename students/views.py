@@ -4,10 +4,10 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 @login_required
 def home(request):
-    query = request.GET.get('q')
+    query = request.GET.get('search',)
     if query:
         students = Student.objects.filter(
-            name_icontains=query) 
+            name__icontains=query) 
     else:
         students=Student.objects.all()
     return render(request,'home.html',{'students': students ,'query':query})
